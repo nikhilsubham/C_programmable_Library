@@ -1,6 +1,7 @@
 #include "dll.h"
 #include <memory.h>
 #include <stdlib.h>
+#include<stdio.h>
 
 /* Public Function Implementation to create and return new empty doubly linked list*/
 dll_t * get_new_dll()
@@ -34,8 +35,14 @@ void *dll_search_by_key (dll_t *dll, void *key)
 }
 
 
-void Add_front(struct Node** head_ref, void* app_data) 
+/* Given a reference (pointer to pointer) to the head of a DLL and a data, appends a new node at the end of the list */
+void Add_front(dll_t *dll, void* app_data) 
 { 
+    if(!dll || !app_data) 
+     return;
+
+    struct Node** head_ref = (&dll->head);
+
     /* 1. allocate node */
     struct Node* new_node = (struct Node*)malloc(sizeof(struct Node)); 
   
@@ -55,55 +62,107 @@ void Add_front(struct Node** head_ref, void* app_data)
 }
 
 
-/*This function is used to delete a particualr node from a given doubly linked list.*/
-void deleteNode(struct Node **head_ref, struct Node *del) 
+/* Given a reference (pointer to pointer) to the head of a DLL and a data, appends a new node at the end of the list */
+void Add_atend(dll_t *dll, void* app_data) 
 { 
-  /* base case */
-  if(*head_ref == NULL || del == NULL) 
-    return; 
+
+        if(!dll || !app_data) 
+        return;
+
+        struct Node** head_ref = (&dll->head);
+
+	/* 1. allocate node */
+	struct Node* new_node = (struct Node*)malloc(sizeof(struct Node)); 
+
+	struct Node* last = *head_ref; /* used in step 5*/
+
+	/* 2. put in the data */
+	new_node->data = app_data; 
+
+	/* 3. This new node is going to be the last node, so 
+		make next of it as NULL*/
+	new_node->next = NULL; 
+
+	/* 4. If the Linked List is empty, then make the new 
+		node as head */
+	if (*head_ref == NULL) { 
+		new_node->prev = NULL; 
+		*head_ref = new_node; 
+		return; 
+	} 
+
+	/* 5. Else traverse till the last node */
+	while (last->next != NULL) 
+		last = last->next; 
+
+	/* 6. Change the next of last node */
+	last->next = new_node; 
+
+	/* 7. Make last node as previous of new node */
+	new_node->prev = last; 
+
+	return; 
+}
+
+
+void insertAfter(struct Node* prev_node, void* new_data) 
+{ 
+    /*1. check if the given prev_node is NULL */
+    if (prev_node == NULL) { 
+        printf("the given previous node cannot be NULL"); 
+        return; 
+    } 
   
-  /* If node to be deleted is head node */
-  if(*head_ref == del) 
-    *head_ref = del->next; 
+    /* 2. allocate new node */
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node)); 
   
-  /* Change next only if node to be deleted is NOT the last node */
-  if(del->next != NULL) 
-    del->next->prev = del->prev; 
+    /* 3. put in the data  */
+    new_node->data = new_data; 
   
-  /* Change prev only if node to be deleted is NOT the first node */
-  if(del->prev != NULL) 
-    del->prev->next = del->next;      
+    /* 4. Make next of new node as next of prev_node */
+    new_node->next = prev_node->next; 
   
-  /* Finally, free the memory occupied by del*/
-  free(del); 
-  return; 
+    /* 5. Make the next of prev_node as new_node */
+    prev_node->next = new_node; 
+  
+    /* 6. Make prev_node as previous of new_node */
+    new_node->prev = prev_node; 
+  
+    /* 7. Change previous of new_node's next node */
+    if (new_node->next != NULL) 
+        new_node->next->prev = new_node; 
 } 
 
 
-/*This function is used to first find the particualar node by position and then delete it.*/
-void deleteNodeAtGivenPos(struct Node** head_ref, int n) 
-{ 
-    /* if list in NULL or invalid position is given */
-    if (*head_ref == NULL || n <= 0) 
-        return; 
-  
-    struct Node* current = *head_ref; 
-    int i; 
-  
-    /* traverse up to the node at position 'n' from 
-       the beginning */
-    for (i = 1; current != NULL && i < n; i++) 
-        current = current->next; 
-  
-    /* if 'n' is greater than the number of nodes 
-       in the doubly linked list */
-    if (current == NULL) 
-        return; 
-  
-    /* delete the node pointed to by 'current' */
-    deleteNode(head_ref, current); 
-} 
 
+void insertBefore(struct Node* next_node,void* new_data) 
+{ 
+    /*1. check if the given new_node is NULL */
+    if (next_node == NULL) { 
+        printf("the given next node cannot be NULL"); 
+        return; 
+    } 
+  
+    /* 2. allocate new node */
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node)); 
+  
+    /* 3. put in the data */
+    new_node->data = new_data; 
+  
+    /* 4. Make prev of new node as prev of next_node */
+    new_node->prev = next_node->prev; 
+  
+    /* 5. Make the prev of next_node as new_node */
+    next_node->prev = new_node; 
+  
+    /* 6. Make next_node as next of new_node */
+    new_node->next = next_node; 
+  
+    /* 7. Change next of new_node's previous node */
+    if (new_node->prev != NULL) 
+        new_node->prev->next = new_node; 
+} 
+ 
 
 
 

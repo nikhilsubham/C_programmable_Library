@@ -152,9 +152,9 @@ int main(int argc, char **argv)
 
     dll_t *student_db = get_new_dll();
     register_key_match_callback(student_db, search_student_db_by_key);
-    Add_front(&student_db->head, student1);
-    Add_front(&student_db->head, student2);
-    Add_front(&student_db->head, student3);
+    Add_front(student_db, student1);
+    Add_front(student_db, student2);
+    Add_front(student_db, student3);
  
     printf("Data before we search and delete\n");
     print_student_db(student_db); 
@@ -168,7 +168,7 @@ int main(int argc, char **argv)
     else{
         printf("The founded record is this which will get deleted.\n");
         print_student_details(student->data);
-        deleteNode(&student_db->head, student);  
+        deleteNode(student_db, student);  
         printf("The new data record will be as follows.\n");
         print_student_db(student_db);
     }

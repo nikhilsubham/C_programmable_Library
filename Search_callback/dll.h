@@ -22,9 +22,15 @@ dll_t* get_new_dll();
 
 /*Public Function declaration to add the appication data to DLL*/
 int add_data_to_dll(dll_t *dll, void *appn_data);
-void Add_front(struct Node** head_ref, void* app_data); 
+void Add_front(dll_t* dll, void* app_data); 
+void Add_atend(dll_t* dll, void* new_data);
+void insertAfter(struct Node* prev_node, void* new_data);
+void insertBefore(struct Node* next_node, void* new_data);  
 
 
 /*declaration for deleting node from douly linked list. */
-void deleteNode(struct Node **head_ref, struct Node *del);
-void deleteNodeAtGivenPos(struct Node** head_ref, int n); 
+void deleteNode(dll_t* dll, struct Node *del);
+void deleteNodeAtGivenPos(dll_t*dll, int n); 
+
+/* reversing a doubly lined list*/ 
+void reverse(dll_t*dll);
