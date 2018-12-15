@@ -70,7 +70,7 @@ static void print_employee_db(dll_t *employee_db)
     }
 }
 
-/*traditional search function implemented by application itself for finding student by roll no*/
+/* Traditional search function implemented by application itself for finding student by roll no*/
 student_t *search_student_by_rollno(dll_t *student_db, unsigned int rollno/*search key*/)
 {
    if(!student_db || !student_db->head) return NULL;
@@ -87,7 +87,7 @@ student_t *search_student_by_rollno(dll_t *student_db, unsigned int rollno/*sear
 }
 
 
-/*traditioanl search function implemented by application itself for finding particualr employee using employee id*/
+/* Traditioanl search function implemented by application itself for finding particualr employee using employee id*/
 employee_t * search_employee_by_emp_id(dll_t *employee_db, unsigned int emp_id/*search key*/)
 {
    if(!employee_db || !employee_db->head) return NULL;
@@ -103,14 +103,15 @@ employee_t * search_employee_by_emp_id(dll_t *employee_db, unsigned int emp_id/*
     }
 }
 
+
 /*Search callbacks*/
 static int /*return 0 if matches, return -1 if do not match*/
 search_student_db_by_key(void *data, void *key)
 {
     student_t *student = (student_t *)data;
-    unsigned int rollno = (unsigned int)key;
-    if(student->rollno == rollno)
-        return 0;
+    char* name = (char*)key;
+    if(!strcmp(student->name, name))
+       return 0;
     return -1;
 }
 
@@ -152,6 +153,7 @@ int main(int argc, char **argv)
 
     dll_t *student_db = get_new_dll();
     register_key_match_callback(student_db, search_student_db_by_key);
+
     Add_front(student_db, student1);
     Add_front(student_db, student2);
     Add_front(student_db, student3);
@@ -159,9 +161,10 @@ int main(int argc, char **argv)
     printf("Data before we search and delete\n");
     print_student_db(student_db); 
 
-    //student_t *student = search_student_by_rollno(student_db, 800400);
-    //student_t *student = dll_search_by_key(student_db, (void *)800400);
-    struct Node *student = dll_search_by_key(student_db, (void *)800400);
+    /*student_t *student = search_student_by_rollno(student_db, 800400); */
+   /*student_t *student = dll_search_by_key(student_db, (void *)800400);  */
+   /* struct Node *student = dll_search_by_key(student_db, (void *)800400); */
+    struct Node *student = dll_search_by_key(student_db, (void *)"Joseph");
     if(!student){
         printf("Student record not found\n");
     }
