@@ -94,7 +94,7 @@ main(int argc, char **argv){
     student4->year_of_birth = 1998;
     student4->height = 167;
     student4->weight = 76;
-    student4->total_marks = 67;
+    student4->total_marks = 68;
 
 
     dll_t *student_db1 = get_new_dll();
