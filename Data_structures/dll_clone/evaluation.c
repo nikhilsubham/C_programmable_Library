@@ -77,7 +77,7 @@ main(int argc, char **argv){
 
     student_t *student2 = (student_t *)calloc(1, sizeof(student_t));
     strncpy(student2->name, "Sagar", strlen("Sagar"));
-    student2->year_of_birth = 2001;
+    student2->year_of_birth = 2002;
     student2->height = 170;
     student2->weight = 82;
     student2->total_marks = 80;
@@ -114,7 +114,7 @@ main(int argc, char **argv){
 
     student_t *student6 = (student_t *)calloc(1, sizeof(student_t));
     strncpy(student6->name, "Sagar", strlen("Sagar"));
-    student6->year_of_birth = 2001;
+    student6->year_of_birth = 2002;
     student6->height = 170;
     student6->weight = 82;
     student6->total_marks = 80;
