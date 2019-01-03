@@ -21,10 +21,9 @@ typedef struct student_{
 } student_t;
 
 
-/*Step 2 : Implement list iterator function here*/
+/*list iterator function is implemented here*/
 void* list_iterator (void *list_node){
 
-    /*write your code here*/
     dll_node_t* node = (dll_node_t*)list_node;
     if(!node && !node->right)
        return NULL;
@@ -34,10 +33,9 @@ void* list_iterator (void *list_node){
     //return NULL;    
 }
 
-/*Step 3 : implement student comparator function here*/
+/*Student comparator function is implemented here*/
 int student_comparator (void *_studentobj1, void *_studentobj2){
 
-    /*Write your code here*/
     student_t *stud1 = (student_t*)_studentobj1;
     student_t *stud2 = (student_t*)_studentobj2;
     
@@ -50,11 +48,10 @@ int student_comparator (void *_studentobj1, void *_studentobj2){
 } 
 
 
-/*Step 4 : implement get_app_data_from_list_node function*/
+/* get_app_data_from_list_node function is implemented here*/
 void*
 get_app_data_from_list_node(void *list_node){
 
-    /*Write your code here*/
     dll_node_t* node = (dll_node_t*)list_node;
     if(!node)
       return NULL;
@@ -139,8 +136,8 @@ main(int argc, char **argv){
     add_data_to_dll(student_db2, student7);
     add_data_to_dll(student_db2, student8);
 
-    /*Step 6*/
-
+    
+   /* diff function is being called here to know whether two same data structures are clones or not of each other*/
     if(diff((void *)student_db1->head, (void *)student_db2->head, list_iterator, student_comparator, get_app_data_from_list_node) == 0)
         printf("Data sructures are equal\n");
     else

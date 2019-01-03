@@ -1,4 +1,6 @@
 /*Header file for Doubly Linked List*/
+#ifndef __DLL__
+#define __DLL__
 
 typedef struct dll_node_{
 
@@ -21,3 +23,5 @@ get_new_dll();
  *  data to DLL*/
 int
 add_data_to_dll(dll_t *dll, void *appn_data);
+
+#endif
