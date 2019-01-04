@@ -82,25 +82,23 @@ struct tree_node* get_next_inorder_succ(struct tree_node *node){
 }
 
 
+/* Public Function Implementation to create and return new empty doubly linked list
+bst_t * get_new_bst()
+{
+    bst_t *bst = calloc(1, sizeof(bst_t));
+    bst->head = NULL;
+    return bst;
+}
 
+struct node *newNode(void* key) 
+{ 
+    struct node *temp =  (struct node *)malloc(sizeof(struct node)); 
+    temp->data = key; 
+    temp->left = temp->right = NULL; 
+    return temp; 
+}
 
-/* Public Function Implementation to create and return new empty doubly linked list*/
-//bst_t * get_new_bst()
-//{
-//    bst_t *bst = calloc(1, sizeof(bst_t));
-//    bst->head = NULL;
-//    return bst;
-//}
-
-//struct node *newNode(void* key) 
-//{ 
-//    struct node *temp =  (struct node *)malloc(sizeof(struct node)); 
-//    temp->data = key; 
-//    temp->left = temp->right = NULL; 
-//    return temp; 
-//}
-
-
+*/
 
 
 
