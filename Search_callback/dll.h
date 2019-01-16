@@ -34,3 +34,14 @@ void deleteNodeAtGivenPos(dll_t*dll, int n);
 
 /* reversing a doubly lined list*/ 
 void reverse(dll_t*dll);
+
+/*Macro to iterate over a DLL*/
+#define ITERATE_LIST_BEGIN(list_ptr, node_ptr)                              \
+{                                                                           \
+    struct Node* _node_ptr = NULL;                                           \
+    node_ptr = list_ptr->head;                                              \
+    for(; node_ptr!= NULL; node_ptr = _node_ptr){                           \
+        if(!node_ptr) break;                                                \
+        _node_ptr = node_ptr->next;
+
+#define ITERATE_LIST_END  }}

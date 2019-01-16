@@ -27,6 +27,7 @@ print_student_db(dll_t *student_db) {
 
     if(!student_db || !student_db->head) return;
 
+#if 0
     struct Node *head = student_db->head;
     student_t *data = NULL;
 
@@ -35,6 +36,15 @@ print_student_db(dll_t *student_db) {
         print_student_details(data);
         head = head->next;    
     }
+#endif
+    struct Node *head = NULL;
+    student_t *data = NULL;
+
+    ITERATE_LIST_BEGIN(student_db,head){
+
+        data = head->data;
+        print_student_details(data);
+    } ITERATE_LIST_END;
 }
 
 /*Application specific data structures*/
