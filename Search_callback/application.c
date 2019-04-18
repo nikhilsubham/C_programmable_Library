@@ -174,7 +174,7 @@ int main(int argc, char **argv)
     /*student_t *student = search_student_by_rollno(student_db, 800400); */
    /*student_t *student = dll_search_by_key(student_db, (void *)800400);  */
    /* struct Node *student = dll_search_by_key(student_db, (void *)800400); */
-    struct Node *student = dll_search_by_key(student_db, (void *)"Joseph");
+    struct Node *student = dll_search_by_key(student_db, (void *)"Abhishek");
     if(!student){
         printf("Student record not found\n");
     }
