@@ -1,6 +1,7 @@
 #include "dll.h"
 #include <memory.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 /* Public Function Implementation to create and return
  * new empty doubly linked list*/
@@ -77,6 +78,7 @@ int dll_priority_insert_data (dll_t *dll, void *data)
         data_node->right = dll->head;
         dll->head->left = data_node;
         dll->head = data_node;
+        printf("hi\n");
         return 0;
     }
 
@@ -107,29 +109,20 @@ int dll_priority_insert_data (dll_t *dll, void *data)
 
 
 
-/* Given a reference (pointer to pointer) to the head of a DLL and a data, appends a new node at the end of the list */
+/* Appends a new node at the front of the list */
 void Add_front(dll_t *dll, void* app_data) 
 { 
     if(!dll || !app_data) 
      return;
 
-    struct Node** head_ref = (&dll->head);
-
-    /* 1. allocate node */
-    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node)); 
-  
-    /* 2. put in the data  */
+    struct Node* new_node = (struct Node*)calloc(1,sizeof(struct Node)); 
     new_node->data = app_data; 
-  
-    /* 3. Make next of new node as head and previous as NULL */
-    new_node->right = (*head_ref); 
     new_node->left = NULL; 
+    new_node->right = dll->head; 
+    
+    if ((dll->head) != NULL) 
+        (dll->head)->left = new_node; 
   
-    /* 4. change prev of head node to new node */
-    if ((*head_ref) != NULL) 
-        (*head_ref)->left = new_node; 
-  
-    /* 5. move the head to point to the new node */
-    (*head_ref) = new_node; 
+    dll->head = new_node; 
 }
 
