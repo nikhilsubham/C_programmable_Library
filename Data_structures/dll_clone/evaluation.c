@@ -6,9 +6,9 @@
 extern int
 diff (void *root1,    /*pointer to first node of data struture 1*/
         void *root2,    /*pointer to first node of data struture 2*/
-        void *(*iterator)(void *), /*Iterator function callback*/
-        int (*comparator)(void *, void *),
-        void *(*get_app_data)(void *)); /*Comparison function callback*/
+        void* (*iterator)(void *), /*Iterator function callback*/
+        int   (*comparator)(void *, void *),
+        void* (*get_app_data)(void *)); /*Comparison function callback*/
 
 
 /*Application specific data structures*/
@@ -30,7 +30,6 @@ void* list_iterator (void *list_node){
 
     node = node->right;
     return (void*)node;
-    //return NULL;    
 }
 
 /*Student comparator function is implemented here*/
@@ -49,15 +48,13 @@ int student_comparator (void *_studentobj1, void *_studentobj2){
 
 
 /* get_app_data_from_list_node function is implemented here*/
-void*
-get_app_data_from_list_node(void *list_node){
+void* get_app_data_from_list_node(void *list_node){
 
     dll_node_t* node = (dll_node_t*)list_node;
     if(!node)
-      return NULL;
+       return NULL;
     
     return node->data;
-    //return NULL;
 }
 
 
@@ -95,10 +92,10 @@ main(int argc, char **argv){
 
 
     dll_t *student_db1 = get_new_dll();
-    add_data_to_dll(student_db1, student1);
-    add_data_to_dll(student_db1, student2);
-    add_data_to_dll(student_db1, student3);
-    add_data_to_dll(student_db1, student4);
+    Add_front(student_db1, student1);
+    Add_front(student_db1, student2);
+    Add_front(student_db1, student3);
+    Add_front(student_db1, student4);
 
 
     /*Student database list 2*/
@@ -131,16 +128,16 @@ main(int argc, char **argv){
     student8->total_marks = 67;
 
     dll_t *student_db2 = get_new_dll();
-    add_data_to_dll(student_db2, student5);
-    add_data_to_dll(student_db2, student6);
-    add_data_to_dll(student_db2, student7);
-    add_data_to_dll(student_db2, student8);
+    Add_front(student_db2, student5);
+    Add_front(student_db2, student6);
+    Add_front(student_db2, student7);
+    Add_front(student_db2, student8);
 
     
    /* diff function is being called here to know whether two same data structures are clones or not of each other*/
     if(diff((void *)student_db1->head, (void *)student_db2->head, list_iterator, student_comparator, get_app_data_from_list_node) == 0)
-        printf("Data sructures are equal\n");
+        printf("Data sructures are clones of each other\n");
     else
-        printf("Data sructures are not equal\n");
+        printf("Data sructures are not clones\n");
     return 0;
 }
