@@ -174,17 +174,57 @@ int main(int argc, char **argv)
     /*student_t *student = search_student_by_rollno(student_db, 800400); */
    /*student_t *student = dll_search_by_key(student_db, (void *)800400);  */
    /* struct Node *student = dll_search_by_key(student_db, (void *)800400); */
-    struct Node *student = dll_search_by_key(student_db, (void *)"Abhishek");
+    //struct Node *student = dll_search_by_key(student_db, (void *)"Abhishek");
+    student_t* student = dll_search_by_key(student_db, (void *)"Abhishek");
     if(!student){
         printf("Student record not found\n");
     }
     else{
         printf("The founded record is this which will get deleted.\n");
-        print_student_details(student->data);
-        deleteNode(student_db, student);  
+        print_student_details(student);
+        delete_node_by_value(student_db, student);
+        //struct Node* node = student_db->head;
+        //deleteNode(student_db, student_db->head); 
+        //Add_Node_front(student_db, node); 
+        //print_student_details(node->data);
+        //deleteNode(student_db, node);
+        //node= removeNode(student_db, node);
+        //print_student_details(node->data);
         printf("The new data record will be as follows.\n");
         print_student_db(student_db);
+        printf("\n******************\n");
+        reverse(student_db);
+        print_student_db(student_db);
+        Detect_remov_loop(student_db);
     }
+
+ #if 0
+    struct Node* node1 = (struct Node*)calloc(1,sizeof(struct Node)); 
+    struct Node* node2 = (struct Node*)calloc(1,sizeof(struct Node));
+    struct Node* node3 = (struct Node*)calloc(1,sizeof(struct Node));
+
+    node1->data = student1; 
+    node1->prev = NULL; 
+    node1->next = node2; 
+
+    node2->data = student2; 
+    node2->prev = node1; 
+    node2->next = node3; 
+
+    node3->data = student3; 
+    node3->prev = node2; 
+    node3->next = node1; 
+
+    dll_t *nodes = get_new_dll();
+    nodes->head =  node1;
+    printf("\nFor new database\n");
+    //print_student_db(nodes);
+    Detect_remov_loop(nodes);
+    printf("\nAfter loop Removal\n");
+    Detect_remov_loop(nodes);
+    print_student_db(nodes);
+#endif
+
     
 /*
     //Employee database

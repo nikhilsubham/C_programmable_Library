@@ -12,6 +12,7 @@ dll_t * get_new_dll()
     return dll;
 }
 
+
 void register_key_match_callback(dll_t *dll, int (*key_match)(void *, void *))
 {
     dll->key_match = key_match;
@@ -27,19 +28,19 @@ void *dll_search_by_key (dll_t *dll, void *key)
 
     while(head){
         if(dll->key_match(head->data, key) == 0)
-            //return (void *)head->data;
-            return (void *)head;
+            return (void *)head->data;
+            //return (void *)head;
         head = head->next;
     }
     return NULL;
 }
 
 
-/* Appends a new node at the front of the list */
-void Add_front(dll_t *dll, void* app_data) 
+/* Create and Appends a new node at the front of the list */
+int Add_front(dll_t *dll, void* app_data) 
 { 
     if(!dll || !app_data) 
-     return;
+     return -1;
 
     struct Node* new_node = (struct Node*)calloc(1,sizeof(struct Node)); 
     new_node->data = app_data; 
@@ -50,15 +51,16 @@ void Add_front(dll_t *dll, void* app_data)
         (dll->head)->prev = new_node; 
   
     dll->head = new_node; 
+    return 0;
 }
 
 
 
 /* Appends a new node at the end of the list */
-void Add_atend(dll_t *dll, void* app_data) 
+int Add_atend(dll_t *dll, void* app_data) 
 { 
         if(!dll || !app_data) 
-        return;
+        return -1;
 
         struct Node* new_node = (struct Node*)calloc(1,sizeof(struct Node)); 
         new_node->data = app_data; 
@@ -68,7 +70,7 @@ void Add_atend(dll_t *dll, void* app_data)
         if(dll->head == NULL) { 
 		new_node->prev = NULL; 
 		dll->head = new_node; 
-		return; 
+		return 0; 
 	} 
 
 	while (last->next != NULL) 
@@ -76,17 +78,15 @@ void Add_atend(dll_t *dll, void* app_data)
 
 	last->next = new_node; 
         new_node->prev = last; 
-        return; 
+        return 0; 
 }
 
 
-void insertAfter(struct Node* prev_node, void* new_data) 
+int insertAfter(struct Node* prev_node, void* new_data) 
 { 
-    if (prev_node == NULL) { 
-        printf("\nThe given previous node cannot be NULL"); 
-        return; 
-    } 
-
+    if (prev_node == NULL) 
+         return -1; 
+    
     struct Node* new_node = (struct Node*)calloc(1,sizeof(struct Node)); 
     new_node->data = new_data; 
     new_node->next = prev_node->next; 
@@ -96,15 +96,16 @@ void insertAfter(struct Node* prev_node, void* new_data)
     /* Change previous of new_node's next node */
     if (new_node->next != NULL) 
         new_node->next->prev = new_node; 
+    return 0;
 } 
 
 
 
-void insertBefore(struct Node* next_node,void* new_data) 
+int insertBefore(struct Node* next_node,void* new_data) 
 { 
     if (next_node == NULL) { 
         printf("the given next node cannot be NULL"); 
-        return; 
+        return -1; 
     } 
 
     struct Node* new_node = (struct Node*)calloc(1, sizeof(struct Node)); 
@@ -116,6 +117,7 @@ void insertBefore(struct Node* next_node,void* new_data)
     /* Change next of new_node's previous node */
     if (new_node->prev != NULL) 
         new_node->prev->next = new_node; 
+    return 0;
 } 
  
 

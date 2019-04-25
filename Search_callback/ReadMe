@@ -1,19 +1,21 @@
+
 In this two data structures are implemented student and employee.
 
-Then we are creating objects of this data structures and crating a 
-Douly linked list using library created and oranizing this data structure
-using Doubly linked list library.
 
-Then both traditional search logic is implemented and search callback is
-implemented. In traditional way there will be lot of code duplication as there
-will be the same logic for both the data structures except the condition matching
-So, the search logic is offloaded to library using callback function and one generic
-function is implemented in library which can be used by all the stuctures. for 
-example in this case it is student and employee data structures.
+Then we are creating objects of this data structures and crating a Douly linked list 
+using library created and oranizing this data structure using Doubly linked list library.
 
-callbback function needs to be registered with library for every different structure used
-in the application and needs to e implementd in the application which library will use to 
-find the matching record. 
+
+Then both traditional search logic is implemented and search callback is implemented. In 
+traditional way there will be lot of code duplication as there will be the same logic for 
+both the data structures except the condition matching So, the search logic is offloaded to 
+library using callback function and one generic function is implemented in library which can 
+be used by all the stuctures. 
+
+
+Callback function needs to be registered with library for every different structure used in 
+the application and needs to be implementd in the application which library will use to find 
+the matching record. 
  
 
 
