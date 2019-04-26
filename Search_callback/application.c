@@ -184,12 +184,11 @@ int main(int argc, char **argv)
         print_student_details(student);
         delete_node_by_value(student_db, student);
         //struct Node* node = student_db->head;
-        //deleteNode(student_db, student_db->head); 
+        //deleteNode(student_db, student_db->head);
+        //removeNode(student_db, student_db->head); 
         //Add_Node_front(student_db, node); 
         //print_student_details(node->data);
         //deleteNode(student_db, node);
-        //node= removeNode(student_db, node);
-        //print_student_details(node->data);
         printf("The new data record will be as follows.\n");
         print_student_db(student_db);
         printf("\n******************\n");

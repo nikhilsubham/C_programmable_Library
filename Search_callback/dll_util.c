@@ -75,7 +75,7 @@ int delete_node_by_value(dll_t * dll, void *data)
 }
 
 
-void removeNode( dll_t *dll, struct Node *del) 
+void removeNode(dll_t *dll, struct Node *del) 
 { 
   if(!dll) 
      return;

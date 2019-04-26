@@ -24,7 +24,8 @@ void* dll_search_by_key (dll_t *dll, void *key);
 dll_t* get_new_dll();
 
 /*Public Function declaration to add the appication data to DLL*/
-int add_data_to_dll(dll_t *dll, void *appn_data);
+//int add_data_to_dll(dll_t *dll, void *appn_data);
+int Add_Node_front(dll_t *dll, struct Node* new_node);
 int Add_front(dll_t* dll, void* app_data); 
 int Add_atend(dll_t* dll, void* new_data);
 int insertAfter(struct Node* prev_node, void* new_data);

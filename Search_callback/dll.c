@@ -12,6 +12,12 @@ dll_t * get_new_dll()
     return dll;
 }
 
+struct Node* Doubly_ll_init_node(void* data){
+    struct Node* node = calloc(1, sizeof(struct Node));
+    node->data = data;
+    return node;
+}
+
 
 void register_key_match_callback(dll_t *dll, int (*key_match)(void *, void *))
 {
@@ -34,6 +40,24 @@ void *dll_search_by_key (dll_t *dll, void *key)
     }
     return NULL;
 }
+
+
+/*Adding a node at the front of the list*/
+int Add_Node_front(dll_t *dll, struct Node* new_node) 
+{ 
+    if(!dll || !new_node) 
+     return -1;
+
+    new_node->prev = NULL; 
+    new_node->next = dll->head; 
+    
+    if ((dll->head) != NULL) 
+        (dll->head)->prev = new_node; 
+  
+    dll->head = new_node; 
+    return 0;
+}
+
 
 
 /* Create and Appends a new node at the front of the list */
