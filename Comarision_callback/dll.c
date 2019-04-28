@@ -78,7 +78,6 @@ int dll_priority_insert_data (dll_t *dll, void *data)
         data_node->right = dll->head;
         dll->head->left = data_node;
         dll->head = data_node;
-        printf("hi\n");
         return 0;
     }
 
